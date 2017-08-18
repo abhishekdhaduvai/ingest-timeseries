@@ -1,0 +1,34 @@
+{
+  "name": "boiler-plate",
+  "version": "^3.1.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "sass",
+    "tutorials"
+  ],
+  "dependencies": {
+    "px-card": "^0.7.1",
+    "google-map": "^1.2.0",
+    "px-vis-xy-chart": "^1.1.1",
+    "px-login": "^1.0.8",
+    "angular": "^1.6.5",
+    "angular-ui-router": "^1.0.5",
+    "bootstrap": "^3.3.7",
+    "angular-material": "^1.1.4",
+    "px-key-value-pair": "^1.0.0",
+    "angular-websocket": "^2.0.0",
+    "ng-websocket": "^0.2.1"
+  },
+  "resolutions": {
+    "px-colors-design": "^1.0.0",
+    "px-defaults-design": "^2.0.0",
+    "px-functions-design": "^2.0.0",
+    "px-mixins-design": "^1.0.0",
+    "angular": "1.6.5"
+  }
+}

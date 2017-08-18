@@ -1,0 +1,98 @@
+<link rel="import" href="../images/ge-svg-logo/ge-svg-logo.html">
+<link rel="import" href="../images/predix-logo/predix-logo.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/px-card/px-card.html">
+<link rel="import" href="../bower_components/px-key-value-pair/px-key-value-pair.html">
+<link rel="import" href="../bower_components/px-toggle/px-toggle.html">
+
+<style>
+
+	px-toggle:after{
+		content: 'Off';
+		position: relative;
+		top:-21.5px;
+		left:4px;
+		font-size: smaller;
+	}
+
+	px-toggle[checked]:after{
+		content: 'On';
+		position: relative;
+		top:-21.5px;
+		left:32px;
+		font-size: smaller;
+	}
+
+</style>
+
+<div class='container'>
+
+
+	<md-card ng-if="token===''">
+		<md-input-container class="md-block" flex-gt-sm>
+	        <label>UAA URL</label>
+	        <input ng-model="uaaform.uaaURL">
+      	</md-input-container>
+
+      	<md-input-container class="md-block" flex-gt-sm style="margin-top:-1em !important">
+	        <label>Base64 Client Credentials</label>
+	        <input ng-model="uaaform.credentials">
+      	</md-input-container>
+		<div class='buttons'>
+			<md-button class="md-raised md-primary" ng-click="getToken()">Get Token</md-button> 
+			<span ng-if="token!=''">Got Token!</span>
+		</div>
+	</md-card>
+
+	<!-- <px-toggle id="toggle" size="huge" checked></px-toggle> -->
+
+
+
+
+	<md-card ng-if="token!=''">		
+
+		<!-- Timeseries Headers -->
+		<strong>Ingest Data</strong><br/>
+		<div class='headers'>
+			<p style='margin-bottom:2em'><strong>Request Headers</strong></p>
+			<md-input-container class="md-block" flex-gt-sm style="margin-bottom:-1em">
+		        <label>Predix-Zone-ID</label>
+		        <input ng-model="timeseriesVars.zoneId">
+	      	</md-input-container>
+			<p>Authorization: Bearer {Added token here}</p>
+		</div>
+		
+		<!-- Request Body -->
+		<div class='body'>
+			<strong>Request Body</strong>
+		</div>
+		<br/>
+		<br/>
+	
+		<!-- Ingestion Parameters -->
+		<div class='params'>
+			<p style='margin-bottom:2em'><strong>Ingestion Params</strong></p>
+			<md-input-container flex="50" style="margin-bottom:-1em">
+		        <label>Number of data points</label>
+		        <input ng-model="timeseriesVars.datapoints">
+	      	</md-input-container>
+			<md-input-container flex="50" style="margin-bottom:-1em">
+		        <label>Frequency in seconds</label>
+		        <input ng-model="timeseriesVars.frequency">
+	      	</md-input-container>
+		</div>
+		
+		<!-- Buttons -->
+		<div class='buttons'>
+			<md-button ng-disabled="{{startDisabled}}" class="md-raised md-primary" ng-click="start()">Start</md-button>
+			<md-button class="md-raised md-warn" ng-click="stop()">Stop</md-button>
+		</div>
+		
+		<!-- Status -->
+		<div class='result'>
+			<p>{{status}}</p>
+			<px-key-value-pair key="Ingested" value="{{ingested}}" size="gamma"></px-key-value-pair>
+		</div>
+
+	</md-card>
+</div>
